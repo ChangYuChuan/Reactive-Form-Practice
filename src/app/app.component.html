@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Annual Conference Reservation</title>
+  </head>
+  <body>
+    <div class="testbox">
+      <form
+        action="/"
+        [formGroup]="SessionForm"
+        (ngSubmit)="saveSession(SessionForm.value)"
+      >
+        <br />
+        <div class="colums">
+          <div class="item">
+            <label for="fname"> First Name<span>*</span></label>
+            <em
+              *ngIf="fname?.invalid && fname?.touched && fname?.errors.required"
+              >Required</em
+            >
+            <em
+              *ngIf="fname?.invalid && fname?.touched && fname?.errors.pattern"
+              >Should be Characteristics</em
+            >
+            <input
+              id="fname"
+              type="text"
+              name="fname"
+              formControlName="fname"
+              required
+            />
+          </div>
+          <div class="item">
+            <label for="lname"> Last Name<span>*</span></label>
+            <em
+              *ngIf="lname?.invalid && lname?.touched && lname?.errors.required"
+              >Required</em
+            >
+            <em
+              *ngIf="lname?.invalid && lname?.touched && lname?.errors.pattern"
+              >Should be Characteristics</em
+            >
+            <input
+              id="lname"
+              type="text"
+              name="lname"
+              formControlName="lname"
+              required
+            />
+          </div>
+          <div class="item">
+            <label for="eaddress">Email Address<span>*</span></label>
+            <em
+              *ngIf="
+                eaddress?.invalid &&
+                eaddress?.touched &&
+                eaddress?.errors.required
+              "
+              >Required</em
+            >
+            <em
+              *ngIf="
+                eaddress?.invalid &&
+                eaddress?.touched &&
+                eaddress?.errors.pattern
+              "
+              >Incorrect email format</em
+            >
+            <em
+              *ngIf="
+                eaddress?.invalid &&
+                eaddress?.touched &&
+                eaddress?.errors.invalidEmail
+              "
+            >
+              email organization cannot be supported.
+            </em>
+            <input
+              id="eaddress"
+              type="text"
+              formControlName="eaddress"
+              name="eaddress"
+              required
+            />
+          </div>
+          <div class="item">
+            <label for="phone">Business Phone<span>*</span></label>
+            <em
+              *ngIf="phone?.invalid && phone?.touched && phone?.errors.required"
+              >Required</em
+            >
+            <em
+              *ngIf="phone?.invalid && phone?.touched && phone?.errors.pattern"
+              >Incorrect phone format</em
+            >
+            <input
+              id="phone"
+              type="tel"
+              formControlName="phone"
+              name="phone"
+              required
+            />
+          </div>
+        </div>
+        <div class="question">
+          <label
+            >Include my contact information on lists distributed to other
+            attendees.</label
+          >
+          <em *ngIf="info?.invalid && info?.touched">Required</em>
+          <div class="question-answer">
+            <div>
+              <input
+                type="radio"
+                value="none"
+                id="radio_1"
+                name="info"
+                formControlName="info"
+                value="True"
+              />
+              <label for="radio_1" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                value="none"
+                id="radio_2"
+                name="info"
+                value="False"
+                formControlName="info"
+              />
+              <label for="radio_2" class="radio"><span>No</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <em *ngIf="preference?.invalid && preference?.touched">Required</em>
+          <p>Meal Preference</p>
+          <select formControlName="preference" name="preference">
+            <option selected value="" disabled selected></option>
+            <option value="b">Beef</option>
+            <option value="ch">Chicken</option>
+            <option value="v">Vegetarian</option>
+            <option value="n">None</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="SessionForm?.invalid"
+        >
+          Save
+        </button>
+        <button type="button" class="btn btn-default">Cancel</button>
+      </form>
+    </div>
+  </body>
+</html>
